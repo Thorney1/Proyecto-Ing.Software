@@ -1,0 +1,48 @@
+{%extends 'layout.html'%}
+
+{% block body%}
+
+
+<form>
+    <div>
+        <h1>Register</h1>
+        <p>Formulario para creación de cuenta</p>
+        <hr>
+
+        <label for="name"><b>Nombre de la Mascota </b></label>
+        <input type="text" placeholder="Ingrese su E-mail" name="email" id="email" required>
+
+    
+        <label for="pet">Tipo de Mascota:</label>
+        <select id="pet">
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+        </select>
+        
+        <label for="pet">Seleccione a su mascota</label>
+        <select name="pet" id="pet">
+          <optgroup label="Perro">
+            <option value="pitbull">pitbull</option>
+            <option value="san-bernard">San Bernardo</option>
+          </optgroup>
+          <optgroup label="Gato">
+            <option value="mercedes">Romano</option>
+            <option value="angora_t">Angora Turco</option>
+          </optgroup>
+        </select>
+
+
+
+
+        
+
+        <p>Usted se encuentra lol? sino lea los <a href="#">Terms & Privacy</a>.</p>
+        <button type="submit" class="registerbtn">Register</button>
+    </div>
+    <div class="container signin">
+        <p>¿Ya tienes una cuenta?<a href="#">Iniciar sesión</a>.</p>
+    </div>
+</form>
+
+
+{% endblock %}

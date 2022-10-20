@@ -1,0 +1,76 @@
+{%extends 'layout.html'%}
+
+{% block body%}
+
+
+<form >
+    <div>
+        <h1>Registro de cliente</h1>
+        <p>Ingrese los datos de los clientes</p>
+        <hr>
+    
+        <label for="nombre"><b>Nombre y Apellido </b></label>
+        <input type="text" placeholder = "Ingrese nombre" name="nombre" id="nombre" required >
+
+        <label for="rut"><b>Rut</b></label>
+        <input type="text" placeholder = "Ingrese Rut del cliente" name="rut" id="rut" required >
+ 
+        <br><br><br>
+        <label for="direccion"><b>Direccion</b></label>
+        <input type="text" placeholder="Ingrese direccion" name="direccion" id="direccion" required >
+        <br><br><br>
+
+        <label for="datoscontactos"><b>Datos de contactos</b></label>
+        <input type="text" placeholder="Ingrese el numero" name="numero" id="numero" pattern="[0-9]+" required >
+        <input type="text" placeholder="Ingrese E-mail" name="E-mail" id="E-mail" required>
+        <hr>
+        
+
+        <br><br><br>
+        <h1>Registro de mascota</h1>
+        <p>Formulario de la Mascota</p>
+        <hr>
+    
+        <label for="name"><b>Nombre de la Mascota </b></label>
+        <input type="text" placeholder="Ingrese nombre" name="nombremascota" id="nombremascota" required>
+    
+        
+        <label for="pet"><b>Tipo de Mascota:</b></label>
+        <select id="pet">
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+        </select>
+            
+        <label for="descripmascota"><b>Raza de la mascota</b></label>
+        <input type="text" placeholder="Ingrese raza" name="raza" id="raza" required >
+
+        <br><br><br>
+        <label for="edad"><b>Edad de mascota</b></label>
+        <input type="text" placeholder="Ingrese Edad" name="edad" id="edad" required >
+
+        <label for="numchip"><b>Numero de chip</b></label>
+        <input type="text" placeholder="Ingrese codigo chip" name="numchip" id="numchip" required >
+        <br><br><br>
+            
+        <label for="descripmascota"><b>Descripcion de mascota</b></label>
+        <input type="text" placeholder="Ingrese descripcion" name="descripmascota" id="descripmascota" required >
+        <hr>
+
+        <label for="status"><b>Estado del animal</b></label>
+        <form> <textarea>
+        <input type="text" placeholder="Ingrese el estado de la mascota" name="estadomascota" id="estadomascota" required > </textarea></form>
+        <hr>          
+            
+        <label for="datoscontactos"><b>Fecha</b></label>
+        <input type="datetime-local" placeholder="datetime-local" name="datetime-local" id="datetime-local" required>
+        <hr>
+        
+        <p>Si estan ingresado los datos correctamente presione "Listo"</a>.</p>
+        <button type="submit" class="registerbtn">Listo</button>
+    </div>
+
+</form>
+
+
+
+{% endblock %}
