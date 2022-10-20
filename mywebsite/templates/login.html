@@ -1,28 +1,36 @@
 {%extends 'layout.html'%}
 
 {% block body%}
- 
-<form>
-    <div class="email_log">
-        <label for="form-label">Email</label>
-        <input type="email">
+
+<form method="post">
+    <div class="container" style="text-align: center;">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </div>
+    <div class="rut_log">
+        <label for="form-label">Rut</label>
+        <input type="text" name="rut" id="rut_id" maxlength="10" class="form-control">
     </div>
     <div class="password-log">
         <label for="form-label">Password</label>
-        <input type="password">
+        <input type="password" name="pass" id="pass_id" class="form-control">
     </div>
     <div class="cheackbox_log">
         <input type="checkbox" class="#">
         <label for="form-label">Recordar (opcional)</label>
     </div>
-    <button type="submit" class="button-form">Ingresar</button>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+
+    </div>
     <div class="container">
         <a href="#">¿Olvidó su contraseña?</a>
     </div>
 
 </form>
 
-  
+
 
 
 {% endblock %}
