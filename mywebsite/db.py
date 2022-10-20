@@ -6,7 +6,7 @@ from flask import current_app, g
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
-            current_app.config['sqlite:///instance/veterinaria.db'],
+            current_app.config['sqlite:///instance/database.sqlite'],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
@@ -24,7 +24,7 @@ def close_db(e=None):
 def init_db():
     db = get_db()
 
-    with current_app.open_resource('schema.sql') as f:
+    with current_app.open_resource('database.sqlite') as f:
         db.executescript(f.read().decode('utf8'))
 
 

@@ -10,7 +10,7 @@ app = Flask(__name__)
 # db = SQLAlchemy(app)
 
 def get_db_connection():
-    conn = sqlite3.connect('instance/database.sqlite')
+    conn = sqlite3.connect('mywebsite/instance/database.sqlite')
     conn.row_factory = sqlite3.Row
     return conn
 
