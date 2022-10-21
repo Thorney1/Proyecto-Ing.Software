@@ -1,5 +1,7 @@
 {%extends 'layout.html'%}
 
+
+
 {% block body%}
 
 <form method="post">
@@ -20,9 +22,15 @@
         <input type="checkbox" class="#">
         <label for="form-label">Recordar (opcional)</label>
     </div>
+
+    {% if error %}
+    <div class="text-center text-danger">
+        <strong> {{ error }}</strong>
+    </div>
+    {% endif %}
+
     <div class="text-center">
         <button type="submit" class="btn btn-primary">Ingresar</button>
-
     </div>
     <div class="container">
         <a href="#">¿Olvidó su contraseña?</a>
