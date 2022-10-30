@@ -1,0 +1,75 @@
+{%extends 'layout.html'%}
+
+
+
+{% block body%}
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    Todas las mascotas ingresadas
+                </div>
+                <div class="col-sm-6" style="text-align: right;">
+                    <a class="btn btn-primary" href="/mascotas/crear">Ingresar mascota</a>
+                </div>
+            </div>
+
+            <!-- de 12 columnas asignamos el uso de 4 -->
+
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tipo animal</th>
+                        <th>Nombre</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Cliente</th>
+                        <th>Chip</th>
+                        <th>Fecha ingreso</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% if items|length > 0%}
+                    {% for item in items %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.tipo_animal_id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.raza}}</td>
+                        <td>{{item.edad}}</td>
+                        <td>{{item.cliente_id}}</td>
+                        <td>{{item.chip}}</td>
+                        <td>{{item.ingreso}}</td>
+                        <td>{{item.descripcion}}</td>
+                        <td>
+                            <button class="btn btn-success">Editar</button>
+                            <button class="btn btn-success">Eliminar</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr style="text-align: center;">
+                        <td colspan="10">No existen datos ingresados.</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}

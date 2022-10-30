@@ -1,0 +1,77 @@
+{%extends 'layout.html'%}
+
+
+
+{% block body%}
+
+<div class="container">
+
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Ingresar mascota
+                    </div>
+                    <div class="col-sm-6" style="text-align: right;">
+                        <a class="btn btn-primary" href="/mascotas">Volver << </a>
+                    </div>
+                </div>
+
+                <!-- de 12 columnas asignamos el uso de 4 -->
+
+            </div>
+            <form method="post">
+
+                <div class="card-body">
+                    <div class="col-md-12 ">
+                        <div class="row col-md-6">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Rut del cliente"
+                                    aria-label="Rut del cliente" aria-describedby="btnBuscarcliente">
+                                <button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>
+                            </div>
+                        </div>
+                        
+                        <div class="row col-md-6">
+                            <div class="mb-3">
+                                <label for="nombre_cliente_id" class="col-sm-4 col-form-label">Nombre cliente</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" id="nombre_cliente_id">
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="card-footer" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
+
+{% block custom_js%}
+
+<script src="{{url_for('static', filename='js/crud/mascotas.js')}}"></script>
+
+{% endblock %}
