@@ -13,7 +13,7 @@ app.config.from_object(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/veterinaria.db'
 
 # db = SQLAlchemy(app)
-
+ #oe deja dormir 
 def get_db_connection():
     conn = sqlite3.connect('mywebsite/instance/database.sqlite')
     conn.row_factory = sqlite3.Row
@@ -24,14 +24,14 @@ def get_db_connection():
 def home():
     return render_template("home.html")
 
-@app.route("/", methods=['GET', 'POST']) #decorador
+@app.route("/", methods=['GET', 'POST']) #decorador jaja que puto 
 def login():
     metodo = request.method
     if(metodo == 'GET'):
         return render_template("login.html")
     elif (metodo == 'POST'):
         #coneccion 
-        conn = get_db_connection();
+        conn = get_db_connection()
         #login de ingreso
 
         #captura de datos
@@ -75,9 +75,26 @@ def cerrar_sesion():
 def register():
     return render_template("register.html")
 
-@app.route("/pet") #decorador
-def pet():
-    return render_template("register_pet.html")
+@app.route("/mascotas", methods=['GET']) #decorador
+def mascotas():
+    #index, vista encargada de mostrar todas las mascotas
+    #conexion
+    conn = get_db_connection()
+    mascotas = conn.execute('SELECT * FROM animal').fetchall();
+    return render_template("mascotas.html", items = mascotas)
+
+@app.route("/mascotas/crear", methods=['GET', 'POST']) #decorador
+def mascotas_crear():
+    metodo = request.method
+    if(metodo == 'GET'):
+        #Mostramos el formulario
+        return render_template("mascotas_crear.html")
+    elif (metodo == 'POST'):
+        #Ingresamos los datos
+        #falta agregar los mensajes flash
+        return render_template("mascotas.html")
+
+
 
 @app.route("/news") #decorador
 def news():
