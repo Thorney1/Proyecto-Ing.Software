@@ -13,7 +13,6 @@ app.config.from_object(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/veterinaria.db'
 
 # db = SQLAlchemy(app)
- #oe deja dormir 
 def get_db_connection():
     conn = sqlite3.connect('mywebsite/instance/database.sqlite')
     conn.row_factory = sqlite3.Row
@@ -24,7 +23,7 @@ def get_db_connection():
 def home():
     return render_template("home.html")
 
-@app.route("/", methods=['GET', 'POST']) #decorador jaja que puto 
+@app.route("/", methods=['GET', 'POST']) #decorador
 def login():
     metodo = request.method
     if(metodo == 'GET'):
