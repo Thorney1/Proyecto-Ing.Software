@@ -65,16 +65,16 @@
                 
             </form>
             
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            Datos de la Mascota
-                        </div>
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Datos de la Mascota
                     </div>
-    
                 </div>
+
             </div>
+        </div>
 
             
             
@@ -87,15 +87,15 @@
                         <div class="row gx-5 mb-3">
                             <div class="col-sm-4">
                                 <label for="inputTipoMascota" class="form-label">Nombre de la Mascota</label>
-                                <input type="text" class="form-control" id="inputTipoMascota" >
+                                <input type="text" class="form-control" id="inputTipoMascota" required >
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputTipoMascota" class="form-label">Tipo de Mascota</label>
-                                <input type="text" class="form-control" id="inputTipoMascota" >
+                                <input type="text" class="form-control" id="inputTipoMascota" required >
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputRazaAnimal" class="form-label">Raza del Animal</label>
-                                <input type="text" class="form-control" id="inputRazaAnimal" >
+                                <input type="text" class="form-control" id="inputRazaAnimal" required>
                             </div>
                         </div>
                     
@@ -103,18 +103,26 @@
                         
                         
                         <div class="row gx-5 mb-3">
-                            <div class="col-md-6">
+                            
+                            <div class="col-md-4">
+                                <label for="inputEdad" class="form-label">Edad</label>
+                                <input type="number"  class="form-control" maxlength="15" id="inputEdad" required>
+                            
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="inputChip" class="form-label">Chip de la Mascota</label>
+                                <input type="number"  class="form-control" maxlength="15" id="inputChip" required>
+                            </div>
+
+                            <div class="col-md-4">
                                 <label for="#" class="form-label"">Teléfono</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">+56</span>
-                                    <input type="text" class="form-control" maxlength="9"  >
+                                    <input type="tel" class="form-control" maxlength="9"  required>
                                 </div>
                             </div>
     
-                            <div class="col-md-6">
-                                <label for="inputChip" class="form-label">Chip de la Mascota</label>
-                                <input type="tel"  class="form-control" maxlength="15" placeholder=""id="inputChip">
-                            </div>
 
                         </div>
                     
@@ -141,8 +149,10 @@
                 <button type="submit" class="btn btn-primary">Ingresar</button>
             </div>
         </div>
+        
+        
     </div>
-
+    
 
 
 
