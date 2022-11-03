@@ -71,10 +71,12 @@ def cerrar_sesion():
     return redirect(url_for('login')) 
 
 @app.route("/register") #decorador
+@validar_sesion
 def register():
     return render_template("register.html")
 
 @app.route("/mascotas", methods=['GET']) #decorador
+@validar_sesion
 def mascotas():
     #index, vista encargada de mostrar todas las mascotas
     #conexion
@@ -83,6 +85,7 @@ def mascotas():
     return render_template("mascotas.html", items = mascotas)
 
 @app.route("/mascotas/crear", methods=['GET', 'POST']) #decorador
+@validar_sesion
 def mascotas_crear():
     metodo = request.method
     if(metodo == 'GET'):
@@ -92,14 +95,18 @@ def mascotas_crear():
         #Ingresamos los datos
         #falta agregar los mensajes flash
         return render_template("mascotas.html")
+    else:
+        return render_template("404.html")
 
 
 
 @app.route("/news") #decorador
+@validar_sesion
 def news():
     return render_template("news.html")
 
 @app.route("/about") #decorador
+@validar_sesion
 def about():
     return render_template("about.html")
 
