@@ -21,14 +21,14 @@
                 <!-- de 12 columnas asignamos el uso de 4 -->
 
             </div>
-            <form method="post">
+            <form action="/mascotas/crear" method="POST">
 
                 <div class="card-body">
                     <div class="col-md-12 ">
                         
                         <div class="row col-md-6">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Rut del cliente (con guión y sin puntos)"
+                                <input type="text" name="cli_rut" class="form-control" placeholder="Rut del cliente (con guión y sin puntos)"
                                     aria-label="Rut del cliente" aria-describedby="btnBuscarcliente">
                                 <button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>
                             </div>
@@ -38,11 +38,11 @@
                         <div class="row gx-5 mb-3">
                             <div class="col-sm-6">
                                 <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" required>
+                                <input type="text" name='name' class="form-control" id="inputNombre" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="inputApellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="inputApellido" required>
+                                <input type="text" name='apellido' class="form-control" id="inputApellido" required>
                             </div>
                         <div>
                         
@@ -50,18 +50,18 @@
                         <div class="row gx-5 mb-3">
                             <div class="col-sm-6">
                                 <label for="inputEmail" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail" required>
+                                <input type="email" name='email' class="form-control" id="inputEmail" required>
                             </div>
                             <div class="col-sm-6">
                                 <label for="inputAddress" class="form-label">Dirrección</label>
-                                <input type="text" class="form-control" id="inputAddress" required>
+                                <input type="text" name='direccion' class="form-control" id="inputAddress" required>
                             </div>
                         
                         <div class="col-md-4">
                             <label for="#" class="form-label"">Teléfono</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">+56</span>
-                                <input type="tel" class="form-control" maxlength="9"  required>
+                                <input type="tel" name='telefono'  class="form-control" maxlength="9"  required>
                             </div>
                         </div>
 
@@ -87,15 +87,15 @@
                         <div class="row gx-5 mb-3">
                             <div class="col-sm-4">
                                 <label for="inputTipoMascota" class="form-label">Nombre de la Mascota</label>
-                                <input type="text" class="form-control" id="inputNombreMascota" required >
+                                <input type="text" name='a_nombre' class="form-control" id="inputNombreMascota" required >
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputTipoMascota" class="form-label">Tipo de Mascota</label>
-                                <input type="text" class="form-control" id="inputTipoMascota" required >
+                                <input type="text" name='tipo' class="form-control" id="inputTipoMascota" required >
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputRazaAnimal" class="form-label">Raza del Animal</label>
-                                <input type="text" class="form-control" id="inputRaza" required>
+                                <input type="text" name="raza" class="form-control" id="inputRaza" required>
                             </div>
                         </div>
                     
@@ -106,19 +106,19 @@
                             
                             <div class="col-md-4">
                                 <label for="inputEdad" class="form-label">Edad</label>
-                                <input type="text"  class="form-control" maxlength="50" id="inputEdad" required>
+                                <input type="text" name="edad" class="form-control" maxlength="50" id="inputEdad" required>
                             
                             </div>
                             
                             <div class="col-md-4">
                                 <label for="inputChip" class="form-label">Chip de la Mascota</label>
-                                <input type="number"  class="form-control" maxlength="15" id="inputChip" >
+                                <input type="number" name="chip" class="form-control" maxlength="15" id="inputChip" >
                             </div>
                         </div>
                     
                         <div class="col-mb-6">
                             <label for="floatingTextarea" class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Ingrese la descripción aquí" id="floatingTextarea"></textarea>
+                            <textarea class="form-control" name="descripcion" placeholder="Ingrese la descripción aquí" id="floatingTextarea"></textarea>
                         </div>
 
 

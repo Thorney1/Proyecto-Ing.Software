@@ -98,21 +98,27 @@ def mascotas_crear():
         #Ingresamos los datos
         #falta agregar los mensajes flash
         #captura de datos dueño
-        cli_nombre= request.form['inputNombre']
-        appellido= request.form['inputApellido']
-        email= request.form['inputEmail']
-        direccion= request.form['inputAddress']
-        telefono= request.form['inputTelefono']
+        rut=request.form['cli_rut']
+        cli_nombre= request.form['name']
+        appellido= request.form['apellido']
+        email= request.form['email']
+        direccion= request.form['direccion']
+        telefono= request.form['telefono']
 
         #captura de datos mascota
-        mas_nombre= request.form['inputNombreMascota']
-        tipo_macota= request.form['inputTipoMascota']
-        raza= request.form['inputRaza']
-        edad= request.form['inputEdad']
-        chip= request.form['inputChip']
+        mas_nombre= request.form['a_nombre']
+        tipo_macota= request.form['tipo']
+        raza= request.form['raza']
+        edad= request.form['edad']
+        chip= request.form['chip']
 
-        db.session.add(cli_nombre, appellido, email, direccion, telefono, mas_nombre, tipo_macota, raza, edad)
-
+        db.session.add(rut, cli_nombre)
+        db.session.add(email, appellido)
+        db.session.add(direccion, telefono)
+        db.session.add(mas_nombre, tipo_macota, raza)
+        db.session.add(edad, chip)
+        db.session.commit()
+        return 'saved'
 
         return render_template("mascotas.html")
     else:
