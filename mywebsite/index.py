@@ -1,3 +1,4 @@
+import email
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
@@ -8,11 +9,13 @@ app = Flask(__name__)
 app.config.from_mapping(
     SECRET_KEY='dev',)
 app.config.from_object(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mywebsite/instance/database.sqlite'
+db=SQLAlchemy(app)
 
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/veterinaria.db'
+#class Task(db.Model):
+#    pass
 
-# db = SQLAlchemy(app)
 def get_db_connection():
     conn = sqlite3.connect('mywebsite/instance/database.sqlite')
     conn.row_factory = sqlite3.Row
@@ -94,6 +97,23 @@ def mascotas_crear():
     elif (metodo == 'POST'):
         #Ingresamos los datos
         #falta agregar los mensajes flash
+        #captura de datos dueño
+        cli_nombre= request.form['inputNombre']
+        appellido= request.form['inputApellido']
+        email= request.form['inputEmail']
+        direccion= request.form['inputAddress']
+        telefono= request.form['inputTelefono']
+
+        #captura de datos mascota
+        mas_nombre= request.form['inputNombreMascota']
+        tipo_macota= request.form['inputTipoMascota']
+        raza= request.form['inputRaza']
+        edad= request.form['inputEdad']
+        chip= request.form['inputChip']
+
+        db.session.add(cli_nombre, appellido, email, direccion, telefono, mas_nombre, tipo_macota, raza, edad)
+
+
         return render_template("mascotas.html")
     else:
         return render_template("404.html")
