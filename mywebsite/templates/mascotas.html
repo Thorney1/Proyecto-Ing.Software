@@ -5,6 +5,16 @@
 {% block body%}
 
 <div class="container">
+    {% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</div>
+
+<div class="container">
 
     <div class="card">
         <div class="card-header">
@@ -33,7 +43,7 @@
                         <th>Chip</th>
                         <th>Fecha ingreso</th>
                         <th>Descripción</th>
-                        <th>Acciones</th>
+                        <!--<th>Acciones</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -42,18 +52,18 @@
                     {% for item in items %}
                     <tr>
                         <td>{{item.id}}</td>
-                        <td>{{item.tipo_animal_id}}</td>
-                        <td>{{item.nombre}}</td>
+                        <td>{{item.tipo}}</td>
+                        <td>{{item.a_nombre}}</td>
                         <td>{{item.raza}}</td>
                         <td>{{item.edad}}</td>
-                        <td>{{item.cliente_id}}</td>
+                        <td>{{item.cli_rut}}</td>
                         <td>{{item.chip}}</td>
                         <td>{{item.ingreso}}</td>
                         <td>{{item.descripcion}}</td>
-                        <td>
+                        <!--<td>
                             <button class="btn btn-success">Editar</button>
                             <button class="btn btn-success">Eliminar</button>
-                        </td>
+                        </td> -->
                     </tr>
                     {% endfor %}
                     {% else %}

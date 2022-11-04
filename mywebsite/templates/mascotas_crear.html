@@ -26,12 +26,10 @@
                 <div class="card-body">
                     <div class="col-md-12 ">
                         
-                        <div class="row col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="text" name="cli_rut" class="form-control" placeholder="Rut del cliente (con guión y sin puntos)"
-                                    aria-label="Rut del cliente" aria-describedby="btnBuscarcliente">
-                                <button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>
-                            </div>
+                        <div class="col-sm-6">
+                            <label for="inputRut" class="form-label">Rut del cliente</label>
+                            <input type="text" name="cli_rut" class="form-control" placeholder="con guión y sin puntos">
+                                <!--<button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>-->
                         </div>
 
 
@@ -91,7 +89,8 @@
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputTipoMascota" class="form-label">Tipo de Mascota</label>
-                                <input type="text" name='tipo' class="form-control" id="inputTipoMascota" required >
+                                <input type="text" name='tipo' class="form-control" placeholder="1:Gato  2:Perro" id="inputTipoMascota" required >
+                                <!--  <input type="checkbox" id="identificador" name="nombre" checked="checked"/>Texto del checkbox-->
                             </div>
                             <div class="col-sm-4">
                                 <label for="inputRazaAnimal" class="form-label">Raza del Animal</label>
@@ -112,7 +111,7 @@
                             
                             <div class="col-md-4">
                                 <label for="inputChip" class="form-label">Chip de la Mascota</label>
-                                <input type="number" name="chip" class="form-control" maxlength="15" id="inputChip" >
+                                <input type="tel" name="chip" class="form-control" maxlength="15" id="inputChip" >
                             </div>
                         </div>
                     

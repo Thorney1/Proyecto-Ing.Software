@@ -1,16 +1,18 @@
-import email
 from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from middleware import validar_sesion
+from datetime import date
+
 import sqlite3
 
 app = Flask(__name__)
 app.config.from_mapping(
     SECRET_KEY='dev',)
 app.config.from_object(__name__)
-app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mywebsite/instance/database.sqlite'
-db=SQLAlchemy(app)
+
+#app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///mywebsite/instance/database.sqlite'
+#db=SQLAlchemy(app)
 
 
 #class Task(db.Model):
@@ -84,7 +86,7 @@ def mascotas():
     #index, vista encargada de mostrar todas las mascotas
     #conexion
     conn = get_db_connection()
-    mascotas = conn.execute('SELECT * FROM animal').fetchall();
+    mascotas = conn.execute('select * from get_animal_all').fetchall();
     return render_template("mascotas.html", items = mascotas)
 
 @app.route("/mascotas/crear", methods=['GET', 'POST']) #decorador
@@ -95,9 +97,14 @@ def mascotas_crear():
         #Mostramos el formulario
         return render_template("mascotas_crear.html")
     elif (metodo == 'POST'):
+        conn = get_db_connection()
         #Ingresamos los datos
-        #falta agregar los mensajes flash
-        #captura de datos dueño
+
+        #conn.execute('INSERT INTO %s (name) VALUES (\'%s\')' % ('test', 'sample'))
+
+        #primero ingresamos los datos del cliente, si el cliente existe, tomamos sus datos, y lo introducimos a la mascota
+
+
         rut=request.form['cli_rut']
         cli_nombre= request.form['name']
         appellido= request.form['apellido']
@@ -111,16 +118,42 @@ def mascotas_crear():
         raza= request.form['raza']
         edad= request.form['edad']
         chip= request.form['chip']
+        descripcion= request.form['descripcion']
 
-        db.session.add(rut, cli_nombre)
-        db.session.add(email, appellido)
-        db.session.add(direccion, telefono)
-        db.session.add(mas_nombre, tipo_macota, raza)
-        db.session.add(edad, chip)
-        db.session.commit()
-        return 'saved'
 
-        return render_template("mascotas.html")
+        fecha_actual = date.today()
+
+        existe_cliente = conn.execute(
+                'SELECT * FROM cliente WHERE cli_rut = ?', (rut,)
+            ).fetchone()
+
+        id = 0
+        if existe_cliente is None:
+            #creamos el cliente y obtenemos su valor
+
+            conn.execute(
+            'INSERT INTO cliente (name, apellido, cli_rut, telefono, direccion, email) VALUES(?,?,?,?,?,?)', (cli_nombre, appellido, rut, telefono, email, direccion,)
+            )
+            conn.commit()
+            existe_cliente = conn.execute(
+                'SELECT * FROM cliente WHERE cli_rut = ?', (rut,)
+            ).fetchone();
+
+            id = int(existe_cliente["id"])
+
+        else:   
+            #usamos el id
+            id = int(existe_cliente["id"])
+            
+        #se crea la mascota
+        conn.execute(
+            'INSERT INTO animal (a_nombre, tipo_animal_id, raza, edad, chip, descripcion, ingreso, cliente_id)  VALUES(?,?,?,?,?,?,?,?)', (mas_nombre, tipo_macota, raza, edad, chip, descripcion, fecha_actual, id)
+        )            
+        conn.commit()
+        conn.close()
+        flash('La mascota ha sido ingresada exitosamente.')
+        return redirect(url_for('mascotas')) 
+           
     else:
         return render_template("404.html")
 
