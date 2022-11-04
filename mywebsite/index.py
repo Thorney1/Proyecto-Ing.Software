@@ -153,21 +153,9 @@ def mascotas_crear():
         conn.close()
         flash('La mascota ha sido ingresada exitosamente.')
         return redirect(url_for('mascotas')) 
-           
+
     else:
         return render_template("404.html")
-
-
-
-@app.route("/news") #decorador
-@validar_sesion
-def news():
-    return render_template("news.html")
-
-@app.route("/about") #decorador
-@validar_sesion
-def about():
-    return render_template("about.html")
 
 @app.errorhandler(404)
 def page_not_found(e):
