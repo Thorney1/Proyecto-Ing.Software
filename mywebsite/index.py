@@ -161,5 +161,9 @@ def mascotas_crear():
 def page_not_found(e):
     return render_template('404.html'), 404
 
+@app.route("/veterinario")
+def veterinario():
+    return veterinario.html
+
 if __name__ == "__main__":
     app.run(debug=True) #para que se autorefresque
