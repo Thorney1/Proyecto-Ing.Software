@@ -28,6 +28,63 @@ def get_db_connection():
 def home():
     return render_template("home.html")
 
+@app.route("/home_veterinario", methods=['GET']) #decorador
+@validar_sesion
+def home_veterinario():
+    return render_template("home_veterinario.html")
+
+@app.route("/atenciones", methods=['GET']) #decorador
+@validar_sesion
+def atenciones():
+    conn = get_db_connection()
+    mascotas = conn.execute('select * from get_animal_all').fetchall()
+    return render_template("atenciones.html", items = mascotas)
+
+@app.route("/atenciones/atender/<id>", methods=['GET', 'POST']) #decorador
+@validar_sesion
+def atender(id):
+    metodo = request.method
+    conn = get_db_connection()
+    mascota = conn.execute(
+        "SELECT * FROM get_animal_all WHERE id = ?", (id,)
+    ).fetchone()
+
+    if(metodo == 'GET'):
+
+        if mascota is None:
+            return 404
+        
+        conn.execute(
+        "UPDATE animal SET estado_animal_id = 2 WHERE id = ?", (id,)
+        )
+
+        conn.commit()
+
+        return render_template('atenciones_atender.html', mascota=mascota)
+    elif (metodo == 'POST'):
+        rowkeys = request.form.getlist('rowKey[]')
+        id_vete = session['user_id']
+        for row in rowkeys:
+             conn.execute(
+            'INSERT INTO diagnostico (animal_id, veterinaria_id, descripcion, medicamento, uuid) VALUES(?,?,?,?,?)', 
+            ( 
+                id,
+                id_vete,
+                request.form["detail_{}".format(row)],
+                request.form["medicamento_{}".format(row)],
+                row
+            )
+            )
+
+        conn.execute(
+        "UPDATE animal SET estado_animal_id = 3 WHERE id = ?", (id,)
+        )
+
+        conn.commit()
+
+        return redirect(url_for('atenciones'))
+    return 404
+
 @app.route("/", methods=['GET', 'POST']) #decorador
 def login():
     metodo = request.method
@@ -57,9 +114,11 @@ def login():
             elif user["pass"] != pass_:
                 error = 'Contraseña incorrecta.'
             if error is None:
+                redirect_to = "home" if user["tipo_usuario"] == 0 else  "home_veterinario";
+                
                 session.clear()
                 session["user_id"] = user['id']
-                return redirect(url_for('home'))
+                return redirect(url_for(redirect_to))
             else:
                 return render_template('login.html', error = error)
 
@@ -161,9 +220,7 @@ def mascotas_crear():
 def page_not_found(e):
     return render_template('404.html'), 404
 
-@app.route("/veterinario")
-def veterinario():
-    return veterinario.html
+
 
 if __name__ == "__main__":
     app.run(debug=True) #para que se autorefresque

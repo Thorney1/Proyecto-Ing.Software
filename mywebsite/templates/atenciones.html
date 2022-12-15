@@ -1,4 +1,4 @@
-{%extends 'layout.html'%}
+{%extends 'layoutVeterinario.html'%}
 
 
 
@@ -6,12 +6,12 @@
 
 <div class="container">
     {% with messages = get_flashed_messages() %}
-   {% if messages %}
-      {% for message in messages %}
-         {{ message }}
-      {% endfor %}
-   {% endif %}
-{% endwith %}
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 </div>
 
 <div class="container ">
@@ -20,15 +20,9 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-6">
-                    Todas las mascotas ingresadas
-                </div>
-                <div class="col-sm-6" style="text-align: right;">
-                    <a class="btn btn-primary" href="/mascotas/crear">Ingresar mascota</a>
+                    Mascotas a antender
                 </div>
             </div>
-
-            <!-- de 12 columnas asignamos el uso de 4 -->
-
         </div>
         <div class="card-body table-responsive p-0">
             <table class="table table-head-fixed text-nowrap">
@@ -63,8 +57,12 @@
                         <td>{{item.chip}}</td>
                         <td>{{item.descripcion}}</td>
                         <td>
-                            <button class="btn btn-success">Editar</button>
-                            <button class="btn btn-success">Eliminar</button>
+                            {%if item.estado_animal_id == 3%}
+                            <a class="btn btn-success" href="/atenciones/editar/{{item.id}}">Editar</a>
+
+                            {% else %}
+                            <a class="btn btn-warning" href="/atenciones/atender/{{item.id}}">Atender</a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

@@ -1,0 +1,114 @@
+{%extends 'layoutVeterinario.html'%}
+{% block body%}
+<div class="container">
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Datos del Dueño de la Mascota
+                    </div>
+                    <div class="col-sm-6" style="text-align: right;">
+                        <a class="btn btn-primary" href="/atenciones">Volver << </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-md-12 ">
+
+                    <div class="col-sm-6">
+                        <label for="inputRut" class="form-label">Rut del cliente</label>
+                        <input type="text" name="cli_rut" class="form-control" value="{{mascota.cli_rut}}" readonly>
+                        <!--<button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form action="/atenciones/atender/{{mascota.id}}" method="POST">
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Datos de la Mascota
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12 ">
+                        <div class="row gx-5 mb-3">
+                            <div class="col-sm-4">
+                                <label for="inputTipoMascota" class="form-label">Nombre de la Mascota</label>
+                                <input type="text" name='a_nombre' class="form-control" id="inputNombreMascota"
+                                    value="{{mascota.a_nombre}}" readonly>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="inputTipoMascota" class="form-label">Tipo de Mascota</label>
+                                <input type="text" name='tipo' class="form-control" id="inputTipoMascota"
+                                    value="{{mascota.tipo}}" readonly>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="inputRazaAnimal" class="form-label">Raza del Animal</label>
+                                <input type="text" name="raza" class="form-control" id="inputRaza"
+                                    value="{{mascota.raza}}" readonly>
+                            </div>
+                        </div>
+                        <div class="row gx-5 mb-3">
+                            <div class="col-md-4">
+                                <label for="inputEdad" class="form-label">Edad</label>
+                                <input type="text" name="edad" class="form-control" maxlength="50" id="inputEdad"
+                                    value="{{mascota.edad}}" readonly>
+
+                            </div>
+                        </div>
+                        <div class="col-mb-6">
+                            <label for="floatingTextarea" class="form-label">Descripción</label>
+                            <textarea class="form-control" name="descripcion" placeholder="Ingrese la descripción aquí"
+                                readonly id="floatingTextarea">
+                                {{mascota.descripcion}}
+                            </textarea>
+                        </div>
+
+                        <button class="btn btn-sm btn-info mt-3" type="button" id="add-row">Añadir linea</button>
+                        <div class="table-responsive">
+                            <table class="table" id="datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Descripción</th>
+                                        <th>Medicamentos</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-data">
+                                    <tr class="total-tr">
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="hidden-keys">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-footer" style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Grabar</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+{% block custom_js%}
+
+<script src="{{url_for('static', filename='js/crud/atender.js')}}"></script>
+
+{% endblock %}
