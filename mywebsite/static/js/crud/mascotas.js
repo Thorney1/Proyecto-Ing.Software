@@ -32,9 +32,9 @@ $(function () {
                     console.log('200', response)
                     let table = print_list(response)
                     Swal.fire({
-                        title: "¿Está seguro/a?",
+                        title: "Diagnostico",
                         html: table,
-                        icon: "success",
+                        icon: "info",
                         showCancelButton: true,
                         showConfirmButton: false,
                         cancelButtonText: '¡Cerrar!'
@@ -50,6 +50,35 @@ $(function () {
             }
         });
 
+    $(".show1").on("click", function (event) {
+        event.preventDefault();
+        let id = $(this).attr("id_animal");
+        $.ajax({
+            url: `/atenciones/traer-detalle/${id}`,
+            type: 'GET',
+            dataType: 'json',
+            statusCode: {
+                200: function (response) {
+                    console.log('200', response)
+                    let table = print_list(response)
+                    Swal.fire({
+                        title: "Diagnostico",
+                        html: table,
+                        icon: "info",
+                        showCancelButton: true,
+                        showConfirmButton: false,
+                        cancelButtonText: '¡Cerrar!'
+                    })
+                },
+                500: function (message) {
+                    Swal.fire({
+                        title: "Proceso terminado",
+                        text: "Error de servidor.",
+                        icon: "error"
+                    });
+                }
+            }
+        });
     });
 
     // $(".delete").on("click", function(event){
@@ -107,6 +136,5 @@ function print_list(data) {
     }
     new_line += '</tbody>'
     new_line += '</table>'
-    return new_line;
-
-}
+    return new_line
+}})

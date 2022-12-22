@@ -16,7 +16,7 @@
 
 <div class="container ">
 
-    <div class="card m-6">
+    <div class="card m-3">
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-6">
@@ -56,14 +56,25 @@
                         <td>{{item.edad}}</td>
                         <td>{{item.chip}}</td>
                         <td>{{item.descripcion}}</td>
-                        <td>
-                            {%if item.estado_animal_id == 3%}
-                            <a class="btn btn-success" href="/atenciones/editar/{{item.id}}">Editar</a>
 
-                            {% else %}
-                            <a class="btn btn-warning" href="/atenciones/atender/{{item.id}}">Atender</a>
-                            {% endif %}
+                        
+                        {% if item.estado_animal_id == 1 or item.estado_animal_id == 2 %}
+                        <td>    
+                        <button  class="btn btn-success show1" id_animal="{{item.id}}"><i class="fa-solid fa-eye"></i> Ver</button>
+                        <div class="btn-group" role="group">
+                                <a href="/atenciones/atender/{{item.id}}" class="btn btn-success action" action="¿Usted está seguro de editar?"><i class="fa-solid fa-stethoscope"></i>Atender</a>
+                                <a href="/mascotas/eliminar/{{item.id}}" class="btn btn-danger action" action="¿Usted está seguro de eliminar?"><i class="fa-solid fa-trash"></i>Eliminar</a>
+                            </div>
+                        </td>    
+                        {% else %}
+                        <td>
+                            <button  class="btn btn-success show1" id_animal="{{item.id}}"><i class="fa-solid fa-eye"></i> Ver</button>
+                            <div class="btn-group" role="group">
+                                <a href="/atenciones/atender/{{item.id}}" class="btn btn-success action" action="¿Usted está seguro de editar?"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                <a href="/mascotas/eliminar/{{item.id}}" class="btn btn-danger action" action="¿Usted está seguro de eliminar?"><i class="fa-solid fa-trash"></i>Eliminar</a>
+                        </div>
                         </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                     {% else %}

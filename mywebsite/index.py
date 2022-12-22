@@ -1,8 +1,10 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify, json)
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from middleware import validar_sesion
 from datetime import date
+
+
 
 import sqlite3
 
@@ -153,10 +155,20 @@ def mascotas():
 def mascotas_detalle(id):
     conn = get_db_connection()
     detalles = conn.execute('select descripcion, medicamento from diagnostico where animal_id = ?', (id)).fetchall();
-    results = [tuple(row) for row in detalles]
+    results = [{"descripcion": row[0], "medicamento": row[1]} for row in detalles]
+    json_string = json.dumps(results)
 
+    return json_string
 
-    return jsonify(results);
+@app.route("/atenciones/traer-detalle/<id>", methods=['GET']) #decorador
+@validar_sesion
+def atencion_detalle(id):
+    conn = get_db_connection()
+    detalles = conn.execute('select descripcion, medicamento from diagnostico where animal_id = ?', (id)).fetchall();
+    results = [{"descripcion": row[0], "medicamento": row[1]} for row in detalles]
+    json_string = json.dumps(results)
+
+    return json_string
 
 @app.route("/mascotas/crear", methods=['GET', 'POST']) #decorador
 @validar_sesion
