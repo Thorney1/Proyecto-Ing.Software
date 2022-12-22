@@ -6,12 +6,12 @@
 
 <div class="container">
     {% with messages = get_flashed_messages() %}
-   {% if messages %}
-      {% for message in messages %}
-         {{ message }}
-      {% endfor %}
-   {% endif %}
-{% endwith %}
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 </div>
 
 <div class="container ">
@@ -62,10 +62,21 @@
                         <td>{{item.edad}}</td>
                         <td>{{item.chip}}</td>
                         <td>{{item.descripcion}}</td>
+                        {% if item.estado_animal_id == 3 %}
                         <td>
-                            <button class="btn btn-success">Editar</button>
-                            <button class="btn btn-success">Eliminar</button>
+                            <button  class="btn btn-success show" id_animal="{{item.id}}"><i class="fa-solid fa-eye"></i> Ver</button>
                         </td>
+                        {% endif %}
+
+                        {% if item.estado_animal_id == 1 or item.estado_animal_id == 2 %}
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="/mascotas/editar/{{item.id}}" class="btn btn-success action" action="¿Usted está seguro de editar?"><i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                <a href="/mascotas/eliminar/{{item.id}}" class="btn btn-danger action" action="¿Usted está seguro de eliminar?"><i class="fa-solid fa-trash"></i>Eliminar</a>
+                            </div>
+                        </td>
+                        {% endif %}
+
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -83,5 +94,12 @@
 </div>
 
 
+
+{% endblock %}
+
+
+{% block custom_js %}
+
+<script src="{{url_for('static', filename='js/crud/mascotas.js')}}"></script>
 
 {% endblock %}

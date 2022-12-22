@@ -1,0 +1,174 @@
+{%extends 'layout.html'%}
+
+
+
+{% block body%}
+
+<div class="container">
+
+    <div class="mt-4 ">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Datos del Dueño de la Mascota
+                    </div>
+                    <div class="col-sm-6" style="text-align: right;">
+                        <a class="btn btn-primary" href="/mascotas">Volver << </a>
+                    </div>
+                </div>
+
+                <!-- de 12 columnas asignamos el uso de 4 -->
+
+            </div>
+            <form method="POST">
+                <div class="card-body">
+                    <div class="col-md-12 ">
+                        
+                        <div class="col-sm-6">
+                            <label for="inputRut" class="form-label">Rut del cliente</label>
+                            <input type="text" name="cli_rut" class="form-control" placeholder="con guión y sin puntos" value="{{cliente.cli_rut}}">
+                                <!--<button class="btn btn-outline-secondary" type="button" id="btnBuscarcliente">Buscar</button>-->
+                        </div>
+
+
+                        <div class="row gx-5 mb-3">
+                            <div class="col-sm-6">
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input type="text" name='name' class="form-control" id="inputNombre" value="{{cliente.name}}" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputApellido" class="form-label">Apellido</label>
+                                <input type="text" name='apellido' class="form-control" id="inputApellido" value="{{cliente.apellido}}" required>
+                            </div>
+                        <div>
+                        
+
+                        <div class="row gx-5 mb-3">
+                            <div class="col-sm-6">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email" name='email' class="form-control" id="inputEmail" value="{{cliente.email}}" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="inputAddress" class="form-label">Dirrección</label>
+                                <input type="text" name='direccion' class="form-control" id="inputAddress" value="{{cliente.direccion}}" required>
+                            </div>
+                        
+                        <div class="col-md-4">
+                            <label for="#" class="form-label"">Teléfono</label>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">+56</span>
+                                <input type="tel" name='telefono'  class="form-control" maxlength="9" value="{{cliente.telefono}}"  required>
+                            </div>
+                        </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                Datos de la Mascota
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12 ">
+                        
+                        
+                        <div class="row gx-5 mb-3">
+                            <div class="col-sm-4">
+                                <label for="inputTipoMascota" class="form-label">Nombre de la Mascota</label>
+                                <input type="text" name='a_nombre' class="form-control" id="inputNombreMascota" value="{{mascota.a_nombre}}" required >
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="inputTipoMascota" class="form-label">Tipo de Mascota</label>
+                                <!-- <input type="text" name='tipo' class="form-control" placeholder="1:Gato  2:Perro" id="inputTipoMascota" value="{{mascota.tipo_animal_id}}" required > -->
+                               <select class="form-control" name="tipo" id="inputTipoMascota" required>
+                                <option>(Seleccione el tipo de animal)</option>
+                                {% for item in animales %}
+                                <option value="{{item.id}}" {% if mascota.tipo_animal_id==item.id %} "selected" {% endif %}>{{item.tipo}}</option>
+                                {% endfor %}
+
+                               </select>
+                                <!--  <input type="checkbox" id="identificador" name="nombre" checked="checked"/>Texto del checkbox-->
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="inputRazaAnimal" class="form-label">Raza del Animal</label>
+                                <input type="text" name="raza" class="form-control" id="inputRaza" value="{{mascota.raza}}" required>
+                            </div>
+                        </div>
+                    
+                        
+                        
+                        
+                        <div class="row gx-5 mb-3">
+                            
+                            <div class="col-md-4">
+                                <label for="inputEdad" class="form-label">Edad</label>
+                                <input type="text" name="edad" class="form-control" maxlength="50" id="inputEdad" value="{{mascota.edad}}" required>
+                            
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="inputChip" class="form-label">Chip de la Mascota</label>
+                                <input type="tel" name="chip" class="form-control" maxlength="15" id="inputChip" value="{{mascota.chip}}" >
+                            </div>
+                        </div>
+                    
+                        <div class="col-mb-6">
+                            <label for="floatingTextarea" class="form-label">Descripción</label>
+                            <textarea class="form-control" name="descripcion" placeholder="Ingrese la descripción aquí" id="floatingTextarea">{{mascota.descripcion}}</textarea>
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3">
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="card-footer" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Grabar</button>
+                </div>
+            </form>
+            
+            
+
+            
+            
+            
+
+                
+                
+           
+            
+        </div>
+        
+        
+    </div>
+    
+
+
+
+</div>
+
+
+
+{% endblock %}
+
+{% block custom_js%}
+
+<script src="{{url_for('static', filename='js/crud/mascotas.js')}}"></script>
+
+{% endblock %}

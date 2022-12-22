@@ -1,4 +1,4 @@
-from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify)
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from middleware import validar_sesion
@@ -148,6 +148,16 @@ def mascotas():
     mascotas = conn.execute('select * from get_animal_all').fetchall();
     return render_template("mascotas.html", items = mascotas)
 
+@app.route("/mascotas/traer-detalle/<id>", methods=['GET']) #decorador
+@validar_sesion
+def mascotas_detalle(id):
+    conn = get_db_connection()
+    detalles = conn.execute('select descripcion, medicamento from diagnostico where animal_id = ?', (id)).fetchall();
+    results = [tuple(row) for row in detalles]
+
+
+    return jsonify(results);
+
 @app.route("/mascotas/crear", methods=['GET', 'POST']) #decorador
 @validar_sesion
 def mascotas_crear():
@@ -215,6 +225,76 @@ def mascotas_crear():
 
     else:
         return render_template("404.html")
+
+@app.route("/mascotas/editar/<id>", methods=['GET', 'POST']) #decorador
+@validar_sesion
+def mascotas_editar(id):
+        metodo = request.method
+        conn = get_db_connection()
+        mascota = conn.execute(
+            'SELECT * FROM animal WHERE id = ?', (id)
+        ).fetchone()
+
+        animales = conn.execute(
+            'SELECT * FROM tipo_animal'
+        ).fetchall()
+
+        if(metodo == 'GET'):
+            
+            cliente = conn.execute(
+                'SELECT * FROM cliente WHERE id = ?', (int(mascota["cliente_id"]),)
+            ).fetchone()
+            return render_template("mascotas_editar.html", cliente = cliente, mascota = mascota, animales = animales)
+        elif (metodo == 'POST'):
+
+            #Modificar datos del cliente
+
+            conn.execute(
+            'UPDATE cliente SET name = ?, apellido = ?, cli_rut = ?, telefono = ?, direccion = ?, email = ? WHERE id = ?', 
+            (
+                request.form["name"], 
+                request.form["apellido"], 
+                request.form["cli_rut"], 
+                request.form["telefono"], 
+                request.form["direccion"],
+                request.form["email"], 
+                int(mascota["cliente_id"])
+            )
+            )
+
+            #Modificar datos de la mascota
+            conn.execute(
+                'UPDATE animal SET a_nombre = ?, tipo_animal_id = ?, raza = ?, edad = ?, chip = ?, descripcion = ?  WHERE id = ?', 
+                (request.form["a_nombre"], 
+                request.form["tipo"], 
+                request.form["raza"], 
+                request.form["edad"], 
+                request.form["chip"], 
+                request.form["descripcion"], 
+                id)
+            )  
+
+            #guardamos los cambios 
+            conn.commit()
+            conn.close()
+            return redirect(url_for('mascotas')) 
+
+
+
+@app.route("/mascotas/eliminar/<id>", methods=['GET']) #decorador
+@validar_sesion
+def mascota_eliminar(id):
+    conn = get_db_connection()
+    conn.execute(
+        'DELETE FROM animal WHERE id = ?', 
+        (id)
+        )
+    #guardamos los cambios 
+    conn.commit()
+    conn.close()
+    return redirect(url_for('mascotas')) 
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):
