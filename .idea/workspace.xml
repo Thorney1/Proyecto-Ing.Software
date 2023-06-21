@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7282fdd7-2b91-4f1b-b80e-d8e9a9070874" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Proyecto-Ing.Software.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/static/CSS/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/static/css/layout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/static/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/static/js/crud/atender.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/static/js/crud/mascotas.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/atenciones.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/atenciones_atender.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/home_veterinario.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/layoutVeterinario.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/layoutlogin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/mascotas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/mascotas_crear.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/mascotas_editar.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mywebsite/templates/register.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2RQxHCTSm3fyqh7MV9VWvBbKFM2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7282fdd7-2b91-4f1b-b80e-d8e9a9070874" name="Changes" comment="" />
+      <created>1687196015231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687196015231</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
